@@ -9,6 +9,6 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: nest
     networks:
-      - mynewtwork
+      - mynetwork
 networks:
-  mynewtwork:
+  mynetwork:
