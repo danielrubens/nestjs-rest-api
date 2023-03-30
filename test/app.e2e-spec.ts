@@ -14,6 +14,7 @@ describe('App e2e', () => {
     app = moduleRef.createNestApplication();
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
     await app.init();
+    await app.listen(3333);
     prisma = app.get(PrismaService);
     await prisma.cleanDb();
   });
