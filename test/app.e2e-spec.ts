@@ -18,7 +18,7 @@ describe('App e2e', () => {
     await app.listen(3333);
     prisma = app.get(PrismaService);
     await prisma.cleanDb();
-    pactum.request.setBaseUrl('http://localhost:3333')
+    pactum.request.setBaseUrl('http://localhost:3333');
   });
   afterAll(() => {
     app.close();
@@ -29,6 +29,13 @@ describe('App e2e', () => {
       password: '123',
     };
     describe('Signup', () => {
+      it('should throw if email empty', () => {
+        return pactum
+          .spec()
+          .post('/auth/signup')
+          .withBody({ password: dto.password })
+          .expectStatus(400);
+      });
       it('should signup', () => {
         return pactum
           .spec()
